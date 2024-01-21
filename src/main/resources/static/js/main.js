@@ -7,6 +7,7 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var mainTitle = document.querySelector('#welcomeTitle');
 
 var stompClient = null;
 var username = null;
@@ -18,10 +19,10 @@ var colors = [
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
-
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
+        mainTitle.textContent = `Weclome ${username}`;
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
